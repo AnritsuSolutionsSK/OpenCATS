@@ -344,7 +344,7 @@ class SettingsUI extends UserInterface
 
             case 'manageUsers':
                 /* Bail out if the user doesn't have SA permissions. */
-                if ($this->getUserAccessLevel('settings.manageUsers') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.manageUsers') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -353,7 +353,7 @@ class SettingsUI extends UserInterface
 
             case 'professional':
                 /* Bail out if the user doesn't have SA permissions. */
-                if ($this->getUserAccessLevel('settings.professional') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.professional') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -378,7 +378,7 @@ class SettingsUI extends UserInterface
 
             case 'showUser':
                 /* Bail out if the user doesn't have SA permissions. */
-                if ($this->getUserAccessLevel("settings.showUser") < ACCESS_LEVEL_DEMO
+                if ($this->getUserAccessLevel("settings.showUser") < ACCESS_LEVEL_SA
                     && $this->_userID != $_GET['userID'])
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
@@ -388,7 +388,7 @@ class SettingsUI extends UserInterface
 
             case 'addUser':
                 /* Bail out if the user doesn't have SA permissions. */
-                if ($this->getUserAccessLevel('settings.addUser') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.addUser') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -405,7 +405,7 @@ class SettingsUI extends UserInterface
 
             case 'editUser':
                 /* Bail out if the user doesn't have SA permissions. */
-                if ($this->getUserAccessLevel('settings.editUser') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.editUser') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -452,7 +452,7 @@ class SettingsUI extends UserInterface
                 break;
 
             case 'customizeCalendar':
-                if ($this->getUserAccessLevel('settings.customizeCalendar') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.customizeCalendar') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -467,7 +467,7 @@ class SettingsUI extends UserInterface
                 break;
 
             case 'reports':
-                if ($this->getUserAccessLevel('settings.reports') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.reports') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -482,7 +482,7 @@ class SettingsUI extends UserInterface
                 break;
 
             case 'emailSettings':
-                if ($this->getUserAccessLevel('settings.emailSettings') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.emailSettings') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -497,7 +497,7 @@ class SettingsUI extends UserInterface
                 break;
 
             case 'careerPortalQuestionnairePreview':
-                if ($this->getUserAccessLevel('settings.careerPortalQuestionnairePreview') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.careerPortalQuestionnairePreview') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -506,7 +506,7 @@ class SettingsUI extends UserInterface
 
             case 'careerPortalQuestionnaire':
 
-                if ($this->getUserAccessLevel('settings.careerPortalQuestionnaire') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.careerPortalQuestionnaire') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -521,7 +521,7 @@ class SettingsUI extends UserInterface
                 break;
 
             case 'careerPortalQuestionnaireUpdate':
-                if ($this->getUserAccessLevel('settings.careerPortalQuestionnaireUpdate') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.careerPortalQuestionnaireUpdate') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -529,7 +529,7 @@ class SettingsUI extends UserInterface
                 break;
 
             case 'careerPortalTemplateEdit':
-                if ($this->getUserAccessLevel('settings.careerPortalTemplateEdit') < ACCESS_LEVEL_DEMO && !$_SESSION['CATS']->hasUserCategory('careerportal'))
+                if ($this->getUserAccessLevel('settings.careerPortalTemplateEdit') < ACCESS_LEVEL_SA && !$_SESSION['CATS']->hasUserCategory('careerportal'))
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -544,7 +544,7 @@ class SettingsUI extends UserInterface
                 break;
 
             case 'careerPortalSettings':
-                if ($this->getUserAccessLevel('settings.careerPortalSettings') < ACCESS_LEVEL_DEMO && !$_SESSION['CATS']->hasUserCategory('careerportal'))
+                if ($this->getUserAccessLevel('settings.careerPortalSettings') < ACCESS_LEVEL_SA && !$_SESSION['CATS']->hasUserCategory('careerportal'))
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -559,7 +559,7 @@ class SettingsUI extends UserInterface
                 break;
 
             case 'eeo':
-                if ($this->getUserAccessLevel('settings.eeo') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.eeo') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -593,7 +593,7 @@ class SettingsUI extends UserInterface
                 break;
 
             case 'emailTemplates':
-                if ($this->getUserAccessLevel('settings.emailTemplates') < ACCESS_LEVEL_DEMO && !$_SESSION['CATS']->hasUserCategory('careerportal'))
+                if ($this->getUserAccessLevel('settings.emailTemplates') < ACCESS_LEVEL_SA && !$_SESSION['CATS']->hasUserCategory('careerportal'))
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -620,7 +620,7 @@ class SettingsUI extends UserInterface
 
            case 'loginActivity':
                 /* Bail out if the user doesn't have SA permissions. */
-                if ($this->getUserAccessLevel('settings.loginActivity') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.loginActivity') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -632,7 +632,7 @@ class SettingsUI extends UserInterface
 
             case 'viewItemHistory':
                 /* Bail out if the user doesn't have SA permissions. */
-                if ($this->getUserAccessLevel('settings.viewItemHistory') < ACCESS_LEVEL_DEMO)
+                if ($this->getUserAccessLevel('settings.viewItemHistory') < ACCESS_LEVEL_SA)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
