@@ -91,15 +91,15 @@ Scenario Outline: Companies module actions
   
   When I do POST request "index.php?m=companies&a=add"
   Then the response should <PAdd> contain "Required fields are missing."
-  And the response should <FAdd> contain "Invalid user level for action"
+  And the response should <FAdd> contain "You don't have permission"
   
   When I do POST request "index.php?m=companies&a=edit"
   Then the response should <PEdit> contain "Invalid company ID."
-  And the response should <FEdit> contain "Invalid user level for action"
+  And the response should <FEdit> contain "You don't have permission"
   
   When I do POST request "index.php?m=companies&a=createAttachment"
   Then the response should <PCreateAttch> contain "Bad Server Information"
-  And the response should <FCreateAttch> contain "Invalid user level for action"
+  And the response should <FCreateAttch> contain "You don't have permission"
 
 Examples:
   | accessLevel | PAdd    | FAdd    | PEdit   | FEdit   | PCreateAttch | FCreateAttch |  

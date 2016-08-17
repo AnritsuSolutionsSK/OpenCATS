@@ -221,43 +221,43 @@ Scenario Outline: Job Order module actions - Part 1
   
   When I do GET request "index.php?m=companies&a=show"
   Then the response should <PShow> contain "Invalid company ID."
-  And the response should <FShow> contain "Invalid user level for action."
+  And the response should <FShow> contain "You don't have permission"
   
   When I do GET request "index.php?m=companies&a=internalPostings"
   Then the response should <PInternalPost> contain "Companies: Company Details"
-  And the response should <FInternalPost> contain "Invalid user level for action."
+  And the response should <FInternalPost> contain "You don't have permission"
   
   When I do GET request "index.php?m=companies&a=add"
   Then the response should <PAdd> contain "Companies: Add Company"
-  And the response should <FAdd> contain "Invalid user level for action."
+  And the response should <FAdd> contain "You don't have permission"
   
   When I do GET request "index.php?m=companies&a=edit"
   Then the response should <PEdit> contain "Invalid company ID."
-  And the response should <FEdit> contain "Invalid user level for action."
+  And the response should <FEdit> contain "You don't have permission"
   
   When I do GET request "index.php?m=companies&a=delete"
   Then the response should <PDelete> contain "Invalid company ID."
-  And the response should <FDelete> contain "Invalid user level for action."
+  And the response should <FDelete> contain "You don't have permission"
   
   When I do GET request "index.php?m=companies&a=search"
   Then the response should <PSearch> contain "Companies: Search Companies"
-  And the response should <FSearch> contain "Invalid user level for action"
+  And the response should <FSearch> contain "You don't have permission"
   
   When I do GET request "index.php?m=companies&a=search&getback=getback"
   Then the response should <PSearch> contain "No wild card string specified."
-  And the response should <FSearch> contain "Invalid user level for action"
+  And the response should <FSearch> contain "You don't have permission"
   
   When I do GET request "index.php?m=companies&a=listByView"
   Then the response should <PListByView> contain "Companies: Home"
-  And the response should <FListByView> contain "Invalid user level for action"
+  And the response should <FListByView> contain "You don't have permission"
     
   When I do GET request "index.php?m=companies&a=createAttachment"
   Then the response should <PCreateAttch> contain "Bad Server Information"
-  And the response should <FCreateAttch> contain "Invalid user level for action"
+  And the response should <FCreateAttch> contain "You don't have permission"
   
   When I do GET request "index.php?m=companies&a=deleteAttachment"
   Then the response should <PDeleteAttch> contain "Bad Server Information"
-  And the response should <FDeleteAttch> contain "Invalid user level for action"
+  And the response should <FDeleteAttch> contain "You don't have permission"
 
 Examples:
   | accessLevel | PShow   | FShow   | PInternalPost | FInternalPost | PAdd    | FAdd    | PEdit   | FEdit   | PDelete | FDelete | PSearch | FSearch | PListByView | FListByView | PCreateAttch | FCreateAttch | PDeleteAttch | FDeleteAttch |  
@@ -462,7 +462,7 @@ Scenario Outline: Reports module actions
   Given I am logged in with <accessLevel> access level
   
   When I do GET request "index.php?m=reports&a=graphView"
-  Then the response should <PGraphView> contain "testdomain.com"
+  Then the response should <PGraphView> contain "Graph refreshes every"
   And the response should <FGraphView> contain "You don't have permission"
   
   When I do GET request "index.php?m=reports&a=generateJobOrderReportPDF"

@@ -21,7 +21,6 @@ Scenario Outline: Settings module actions
   When I do POST request "index.php?m=settings&a=changePassword"
   Then the response should <PChangePasswd> contain "Invalid Information"
   And the response should <FChangePasswd> contain "You don't have permission"
-  And the response should <FChangePasswdDemo> contain "You are not allowed to change your password."
   
   When I do GET request "index.php?m=settings&a=newInstallPassword"
   Then the response should <PNewInstallPswd> contain "Create Administrator Password"
@@ -41,19 +40,19 @@ Scenario Outline: Settings module actions
   
   When I do GET request "index.php?m=settings&a=newSiteName"
   Then the response should <PNewSiteName> contain "Site Name"
-  And the response should <FNewSiteName> contain "Settings Saved"
+  And the response should <FNewSiteName> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=newSiteName"
   Then the response should <PNewSiteName> contain "Please enter a site name."
-  And the response should <FNewSiteName> contain "My Recent Calls"
+  And the response should <FNewSiteName> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=upgradeSiteName"
   Then the response should <PUpgSiteName> contain "Site Name"
-  And the response should <FUpgSiteName> contain "Settings Saved"
+  And the response should <FUpgSiteName> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=upgradeSiteName"
   Then the response should <PUpgSiteName> contain "Please enter a site name."
-  And the response should <FUpgSiteName> contain "My Recent Calls"
+  And the response should <FUpgSiteName> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=newInstallFinished"
   Then the response should <NewInstallFnshd> contain "Settings Saved"
@@ -62,15 +61,15 @@ Scenario Outline: Settings module actions
   Then the response should <NewInstallFnshd> contain "My Recent Calls"
   
   Examples:
-  | accessLevel | PTags   | FTags   | PChangePasswd | FChangePasswd | FChangePasswdDemo | PNewInstallPswd  | FNewInstallPswd    | PForceEmail | FForceEmail | PNewSiteName | FNewSiteName | PUpgSiteName | FUpgSiteName | NewInstallFnshd  |
-  | DISABLED    | not     | not     | not           | not           | not               | not              | not                | not         | not         | not          | not          | not          | not          | not              |
-  | READONLY    | not     |         |               | not           | not               |                  | not                |             | not         | not          |              | not          |              |                  |
-  | EDIT        | not     |         |               | not           | not               |                  | not                |             | not         | not          |              | not          |              |                  |
-  | DELETE      | not     |         |               | not           | not               |                  | not                |             | not         | not          |              | not          |              |                  |
-  | DEMO        | not     |         | not           | not           |                   |                  | not                |             | not         | not          |              | not          |              |                  |
-  | ADMIN       |         | not     |               | not           | not               |                  | not                |             | not         |              | not          |              | not          |                  |
-  | MULTI_ADMIN |         | not     |               | not           | not               |                  | not                |             | not         |              | not          |              | not          |                  |
-  | ROOT        |         | not     |               | not           | not               |                  | not                |             | not         |              | not          |              | not          |                  |
+  | accessLevel | PTags   | FTags   | PChangePasswd | FChangePasswd | PNewInstallPswd  | FNewInstallPswd    | PForceEmail | FForceEmail | PNewSiteName | FNewSiteName | PUpgSiteName | FUpgSiteName | NewInstallFnshd  |
+  | DISABLED    | not     | not     | not           | not           | not              | not                | not         | not         | not          | not          | not          | not          | not              |
+  | READONLY    | not     |         |               | not           | not              |                    | not         |             | not          |              | not          |              | not              |
+  | EDIT        | not     |         |               | not           | not              |                    | not         |             | not          |              | not          |              | not              |
+  | DELETE      | not     |         |               | not           | not              |                    | not         |             | not          |              | not          |              | not              |
+  | DEMO        | not     |         | not           | not           | not              |                    | not         |             | not          |              | not          |              | not              |
+  | ADMIN       |         | not     |               | not           |                  | not                |             | not         |              | not          |              | not          |                  |
+  | MULTI_ADMIN |         | not     |               | not           |                  | not                |             | not         |              | not          |              | not          |                  |
+  | ROOT        |         | not     |               | not           |                  | not                |             | not         |              | not          |              | not          |                  |
   
 @settings @actions
 Scenario Outline: Settings module actions
@@ -97,31 +96,31 @@ Scenario Outline: Settings module actions
   And the response should <FShowUser> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=addUser"
-  Then the response should <PAddUserGET> contain "Settings: Add Site User"
-  And the response should <FAddUserGET> contain "You don't have permission"
+  Then the response should <PAddUser> contain "Settings: Add Site User"
+  And the response should <FAddUser> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=addUser"
-  Then the response should <PAddUserPOST> contain "Required Fields are Missing"
-  And the response should <FAddUserPOST> contain "You don't have permission"
+  Then the response should <PAddUser> contain "Required Fields are Missing"
+  And the response should <FAddUser> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=editUser"
-  Then the response should <PEditUserGET> contain "Bad Server Information"
-  And the response should <FEditUserGET> contain "You don't have permission"
+  Then the response should <PEditUser> contain "Bad Server Information"
+  And the response should <FEditUser> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=editUser"
-  Then the response should <PEditUserPOST> contain "Bad Server Information"
-  And the response should <FEditUserPOST> contain "You don't have permission"
+  Then the response should <PEditUser> contain "Bad Server Information"
+  And the response should <FEditUser> contain "You don't have permission"
   
   Examples:
-  | accessLevel | PManageUsers | FManageUsers | PProfessional | FProfessional | PPreviewPage | FPreviewPage | PPreviewPageTop | FPreviewPageTop | PShowUser | FShowUser | PAddUserGET | FAddUserGET | PAddUserPOST | FAddUserPOST | PEditUserGET | FEditUserGET | PEditUserPOST | FEditUserPOST |
-  | DISABLED    | not          | not          | not           | not           | not          | not          | not             | not             | not       | not       | not         | not         | not          | not          | not       | not       | not           | not           | 
-  | READONLY    | not          |              | not           |               |              | not          |                 | not             | not       |           | not         |             | not          |              | not       |           | not           |               |
-  | EDIT        | not          |              | not           |               |              | not          |                 | not             | not       |           | not         |             | not          |              | not       |           | not           |               |
-  | DELETE      | not          |              | not           |               |              | not          |                 | not             | not       |           | not         |             | not          |              | not       |           | not           |               |
-  | DEMO        |              | not          |               | not           |              | not          |                 | not             |           | not       |             | not         | not          |              |           | not       | not           |               |
-  | ADMIN       |              | not          |               | not           |              | not          |                 | not             |           | not       |             | not         |              | not          |           | not       |               | not           |
-  | MULTI_ADMIN |              | not          |               | not           |              | not          |                 | not             |           | not       |             | not         |              | not          |           | not       |               | not           |
-  | ROOT        |              | not          |               | not           |              | not          |                 | not             |           | not       |             | not         |              | not          |           | not       |               | not           |
+  | accessLevel | PManageUsers | FManageUsers | PProfessional | FProfessional | PPreviewPage | FPreviewPage | PPreviewPageTop | FPreviewPageTop | PShowUser | FShowUser | PAddUser     | FAddUser     | PEditUser     | FEditUser     |
+  | DISABLED    | not          | not          | not           | not           | not          | not          | not             | not             | not       | not       | not          | not          | not           | not           | 
+  | READONLY    | not          |              | not           |               |              | not          |                 | not             | not       |           | not          |              | not           |               |
+  | EDIT        | not          |              | not           |               |              | not          |                 | not             | not       |           | not          |              | not           |               |
+  | DELETE      | not          |              | not           |               |              | not          |                 | not             | not       |           | not          |              | not           |               |
+  | DEMO        | not          |              | not           |               |              | not          |                 | not             | not       |           | not          |              | not           |               |
+  | ADMIN       |              | not          |               | not           |              | not          |                 | not             |           | not       |              | not          |               | not           |
+  | MULTI_ADMIN |              | not          |               | not           |              | not          |                 | not             |           | not       |              | not          |               | not           |
+  | ROOT        |              | not          |               | not           |              | not          |                 | not             |           | not       |              | not          |               | not           |
   
 @settings @actions
 Scenario Outline: Settings module actions
@@ -136,20 +135,20 @@ Scenario Outline: Settings module actions
   And the response should <FDeleteBackup> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=customizeExtraFields"
-  Then the response should <PExFieldsGET> contain "Settings: Customization"
-  And the response should <FExFieldsGET> contain "You don't have permission"
+  Then the response should <PExFields> contain "Settings: Customization"
+  And the response should <FExFields> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=customizeExtraFields"
-  Then the response should <PExFieldsPOST> contain "Settings: Customization"
-  And the response should <FExFieldsPOST> contain "You don't have permission"
+  Then the response should <PExFields> contain "Settings: Customization"
+  And the response should <FExFields> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=customizeCalendar"
-  Then the response should <PCalendGET> contain "Settings: Customization"
-  And the response should <FCalendGET> contain "You don't have permission"
+  Then the response should <PCalend> contain "Settings: Customization"
+  And the response should <FCalend> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=customizeCalendar"
-  Then the response should <PCalendPOST> contain "Settings: Administration"
-  And the response should <FCalendPOST> contain "You don't have permission"
+  Then the response should <PCalend> contain "Settings: Administration"
+  And the response should <FCalend> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=reports"
   Then the response should <PReports> contain "Settings: Reports"
@@ -161,12 +160,12 @@ Scenario Outline: Settings module actions
   #And the response should <FReports> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=emailSettings"
-  Then the response should <PEmailSetGET> contain "Settings: Administration"
-  And the response should <FEmailSetGET> contain "You don't have permission"
+  Then the response should <PEmailSet> contain "Settings: Administration"
+  And the response should <FEmailSet> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=emailSettings"
-  Then the response should <PEmailSetPOST> contain "Settings: Administration"
-  And the response should <FEmailSetPOST> contain "You don't have permission"
+  Then the response should <PEmailSet> contain "Settings: Administration"
+  And the response should <FEmailSet> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=careerPortalQuestionnairePreview"
   Then the response should <PCPQuestion> contain "Bad Server Information"
@@ -182,15 +181,15 @@ Scenario Outline: Settings module actions
   
   
   Examples:
-  | accessLevel | PCreateBackup | FCreateBackup | PDeleteBackup | FDeleteBackup | PExFieldsGET | FExFieldsGET | PExFieldsPOST | FExFieldsPOST | PCalendGET | FCalendGET | PCalendPOST | FCalendPOST | PReports | FReports | PEmailSetGET | FEmailSetGET | PEmailSetPOST | FEmailSetPOST | PCPQuestion | FCPQuestion |
-  | DISABLED    | not           | not           | not           | not           | not          | not          | not           | not           | not        | not        | not         | not         | not      | not      | not          | not          | not           |   not         | not         | not         |
-  | READONLY    | not           |               | not           |               | not          |              | not           |               | not        |            | not         |             | not      |          | not          |              | not           |               | not         |             |
-  | EDIT        | not           |               | not           |               | not          |              | not           |               | not        |            | not         |             | not      |          | not          |              | not           |               | not         |             |
-  | DELETE      | not           |               | not           |               | not          |              | not           |               | not        |            | not         |             | not      |          | not          |              | not           |               | not         |             |
-  | DEMO        | not           |               | not           |               |              | not          | not           |               |            | not        | not         |             |          | not      |              | not          | not           |               |             | not         |
-  | ADMIN       |               | not           |               | not           |              | not          |               | not           |            | not        |             | not         |          | not      |              | not          |               |  not           |             | not         |
-  | MULTI_ADMIN |               | not           |               | not           |              | not          |               | not           |            | not        |             | not         |          | not      |              | not          |               |  not           |             | not         |
-  | ROOT        |               | not           |               | not           |              | not          |               | not           |            | not        |             | not         |          | not      |              | not          |               |  not           |             | not         |
+  | accessLevel | PCreateBackup | FCreateBackup | PDeleteBackup | FDeleteBackup | PExFields | FExFields | PCalend | FCalend | PReports | FReports | PEmailSet | FEmailSet | PCPQuestion | FCPQuestion |
+  | DISABLED    | not           | not           | not           | not           | not       | not       | not     | not     | not      | not      | not       | not       | not         | not         |
+  | READONLY    | not           |               | not           |               | not       |           | not     |         | not      |          | not       |           | not         |             |
+  | EDIT        | not           |               | not           |               | not       |           | not     |         | not      |          | not       |           | not         |             |
+  | DELETE      | not           |               | not           |               | not       |           | not     |         | not      |          | not       |           | not         |             |
+  | DEMO        | not           |               | not           |               | not       |           | not     |         | not      |          | not       |           | not         |             |
+  | ADMIN       |               | not           |               | not           |           | not       |         | not     |          | not      |           | not       |             | not         |
+  | MULTI_ADMIN |               | not           |               | not           |           | not       |         | not     |          | not      |           | not       |             | not         |
+  | ROOT        |               | not           |               | not           |           | not       |         | not     |          | not      |           | not       |             | not         |
   
 @settings @actions
 Scenario Outline: Settings module actions
@@ -201,28 +200,28 @@ Scenario Outline: Settings module actions
   And the response should <FCPQuestionUpdt> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=careerPortalTemplateEdit"
-  Then the response should <PCPTempEditGET> contain "Required Fields are Missing"
-  And the response should <FCPTempEditGET> contain "You don't have permission"
+  Then the response should <PCPTempEdit> contain "Required Fields are Missing"
+  And the response should <FCPTempEdit> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=careerPortalTemplateEdit"
-  Then the response should <PCPTempEditPOST> contain "Required Fields are Missing"
-  And the response should <FCPTempEditPOST> contain "You don't have permission"
+  Then the response should <PCPTempEdit> contain "Required Fields are Missing"
+  And the response should <FCPTempEdit> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=careerPortalSettings"
-  Then the response should <PCPSettingsGET> contain "Settings: Administration"
-  And the response should <FCPSettingsGET> contain "You don't have permission"
+  Then the response should <PCPSettings> contain "Settings: Administration"
+  And the response should <FCPSettings> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=careerPortalSettings"
-  Then the response should <PCPSettingsPOST> contain "Settings: Administration"
-  And the response should <FCPSettingsPOST> contain "You don't have permission"
+  Then the response should <PCPSettings> contain "Settings: Administration"
+  And the response should <FCPSettings> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=eeo"
-  Then the response should <PEEOGET> contain "Settings: Administration"
-  And the response should <FEEOGET> contain "You don't have permission"
+  Then the response should <PEEO> contain "Settings: Administration"
+  And the response should <FEEO> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=eeo"
-  Then the response should <PEEOPOST> contain "Settings: Administration"
-  And the response should <FEEOPOST> contain "You don't have permission"
+  Then the response should <PEEO> contain "Settings: Administration"
+  And the response should <FEEO> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=onCareerPortalTweak"
   Then the response should <PCPTweak> contain "Bad Server Information"
@@ -233,12 +232,12 @@ Scenario Outline: Settings module actions
   And the response should <FDeleteUser> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=emailTemplates"
-  Then the response should <PEmailTempGET> contain "Administration: E-Mail Templates"
-  And the response should <FEmailTempGET> contain "You don't have permission"
+  Then the response should <PEmailTemp> contain "Administration: E-Mail Templates"
+  And the response should <FEmailTemp> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=emailTemplates"
-  Then the response should <PEmailTempPOST> contain "Bad Server Information"
-  And the response should <FEmailTempPOST> contain "You don't have permission"
+  Then the response should <PEmailTemp> contain "Bad Server Information"
+  And the response should <FEmailTemp> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=aspLocalization"
   Then the response should <PAspLocalization> contain "Localization Settings Saved"
@@ -246,15 +245,15 @@ Scenario Outline: Settings module actions
 
   
   Examples:
-  | accessLevel | PCPQuestionUpdt | FCPQuestionUpdt | PCPTempEditGET | FCPTempEditGET | PCPTempEditPOST| FCPTempEditPOST| PCPSettingsGET | FCPSettingsGET | PCPSettingsPOST | FCPSettingsPOST | PEEOGET | FEEOGET | PEEOPOST | FEEOPOST | PCPTweak | FCPTweak | PDeleteUser | FDeleteUser | PEmailTempGET | FEmailTempGET | PEmailTempPOST | FEmailTempPOST | PAspLocalization | FAspLocalization |
-  | DISABLED    | not             | not             | not            | not            | not            | not            | not            | not            |  not            | not             | not     | not     | not      | not      | not      | not      | not         | not         | not             | not             | not          | not           | not              | not              |
-  | READONLY    | not             |                 | not            |                | not            |                | not            |                |  not            |                 | not     |         | not      |          | not      |          | not         |             | not             |                 | not          |               | not              |                  |
-  | EDIT        | not             |                 | not            |                | not            |                | not            |                |  not            |                 | not     |         | not      |          | not      |          | not         |             | not             |                 | not          |               | not              |                  |
-  | DELETE      | not             |                 | not            |                | not            |                | not            |                |  not            |                 | not     |         | not      |          | not      |          | not         |             | not             |                 | not          |               | not              |                  |
-  | DEMO        |                 | not             |                | not            | not            |                |                | not            |  not            |                 |         | not     | not      |          | not      |          | not         |             |                 | not             | not          |               | not              |                  |
-  | ADMIN       |                 | not             |                | not            |                | not            |                | not            |                 | not             |         | not     |          | not      |          | not      |             | not         |                 | not             |              | not           |                  | not              |
-  | MULTI_ADMIN |                 | not             |                | not            |                | not            |                | not            |                 | not             |         | not     |          | not      |          | not      |             | not         |                 | not             |              | not           |                  | not              |
-  | ROOT        |                 | not             |                | not            |                | not            |                | not            |                 | not             |         | not     |          | not      |          | not      |             | not         |                 | not             |              | not           |                  | not              |
+  | accessLevel | PCPQuestionUpdt | FCPQuestionUpdt | PCPTempEdit | FCPTempEdit | PCPSettings | FCPSettings | PEEO | FEEO | PCPTweak | FCPTweak | PDeleteUser | FDeleteUser | PEmailTemp | FEmailTemp | PAspLocalization | FAspLocalization |
+  | DISABLED    | not             | not             | not         | not         | not         | not         | not  | not  | not      | not      | not         | not         | not        | not        | not              | not              |
+  | READONLY    | not             |                 | not         |             | not         |             | not  |      | not      |          | not         |             | not        |            | not              |                  |
+  | EDIT        | not             |                 | not         |             | not         |             | not  |      | not      |          | not         |             | not        |            | not              |                  |
+  | DELETE      | not             |                 | not         |             | not         |             | not  |      | not      |          | not         |             | not        |            | not              |                  |
+  | DEMO        | not             |                 | not         |             | not         |             | not  |      | not      |          | not         |             | not        |            | not              |                  |
+  | ADMIN       |                 | not             |             | not         |             | not         |      | not  |          | not      |             | not         |            | not        |                  | not              |
+  | MULTI_ADMIN |                 | not             |             | not         |             | not         |      | not  |          | not      |             | not         |            | not        |                  | not              |
+  | ROOT        |                 | not             |             | not         |             | not         |      | not  |          | not      |             | not         |            | not        |                  | not              |
   
 @settings @actions
 Scenario Outline: Settings module actions
@@ -302,7 +301,7 @@ Scenario Outline: Settings module actions
   | READONLY    | not            |                | not           |               |             | not         |            | not        |          | not      |          | not      |          | not      |          | not      |             |             |
   | EDIT        | not            |                | not           |               |             | not         |            | not        |          | not      |          | not      |          | not      |          | not      |             |             |
   | DELETE      | not            |                | not           |               |             | not         |            | not        |          | not      |          | not      |          | not      |          | not      |             |             |
-  | DEMO        |                | not            |               | not           |             | not         |            | not        |          | not      |          | not      |          | not      |          | not      |             |             |
+  | DEMO        | not            |                | not           |               |             | not         |            | not        |          | not      |          | not      |          | not      |          | not      |             |             |
   | ADMIN       |                | not            |               | not           |             | not         |            | not        |          | not      |          | not      |          | not      |          | not      |             |             |
   | MULTI_ADMIN |                | not            |               | not           |             | not         |            | not        |          | not      |          | not      |          | not      |          | not      |             |             |
   | ROOT        |                | not            |               | not           |             | not         |            | not        |          | not      |          | not      |          | not      |          | not      |             |             |
@@ -363,12 +362,12 @@ Scenario Outline: Settings module actions
   #And the response should <FWebsite> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=administration"
-  Then the response should <PAdministrationGET> contain "Settings: Administration"
-  And the response should <FAdministrationGET> contain "You don't have permission"
+  Then the response should <PAdministration> contain "Settings: Administration"
+  And the response should <FAdministration> contain "You don't have permission"
   
   When I do POST request "index.php?m=settings&a=administration"
-  Then the response should <PAdministrationPOST> contain "Settings: Administration"
-  And the response should <FAdministrationPOST> contain "You don't have permission"
+  Then the response should <PAdministration> contain "Settings: Administration"
+  And the response should <FAdministration> contain "You don't have permission"
   
   When I do GET request "index.php?m=settings&a=myProfile"
   Then the response should <PMyProfile> contain "Settings: My Profile"
@@ -376,15 +375,15 @@ Scenario Outline: Settings module actions
   
   
  Examples:
-  | accessLevel | PWebsite | FWebsite | PAdministrationGET | FAdministrationGET | PAdministrationPOST | FAdministrationPOST | PMyProfile | FMyProfile |
-  | DISABLED    | not      | not      | not                | not                | not                 | not                 | not        | not        |
-  | READONLY    |          | not      | not                |                    | not                 |                     |            | not        |
-  | EDIT        |          | not      | not                |                    | not                 |                     |            | not        |
-  | DELETE      |          | not      | not                |                    | not                 |                     |            | not        |
-  | DEMO        |          | not      |                    | not                | not                 |                     |            | not        |
-  | ADMIN       |          | not      |                    | not                |                     | not                 |            | not        |
-  | MULTI_ADMIN |          | not      |                    | not                |                     | not                 |            | not        |
-  | ROOT        |          | not      |                    | not                |                     | not                 |            | not        |
+  | accessLevel | PWebsite | FWebsite | PAdministration | FAdministration | PMyProfile | FMyProfile |
+  | DISABLED    | not      | not      | not             | not             | not        | not        |
+  | READONLY    |          | not      | not             |                 |            | not        |
+  | EDIT        |          | not      | not             |                 |            | not        |
+  | DELETE      |          | not      | not             |                 |            | not        |
+  | DEMO        |          | not      | not             |                 |            | not        |
+  | ADMIN       |          | not      |                 | not             |            | not        |
+  | MULTI_ADMIN |          | not      |                 | not             |            | not        |
+  | ROOT        |          | not      |                 | not             |            | not        |
   
  
  
