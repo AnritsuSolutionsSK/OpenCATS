@@ -21,6 +21,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
 {
     private $roleData;
     private $result;
+    private $accessLevel;
     /**
      * Initializes context.
      *
@@ -36,10 +37,49 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
         );
     }
     
+    /**
+     * @When I do :type request on url :url
+     */
+    public function whenIDoRequestOnUrl($type, $url)
+    {
+        switch($type){
+            case "GET":
+                $this->iDoGETRequest($url);
+                break;
+            case "POST":
+                $this->iDoPOSTRequest($url);
+                break;
+            default:
+                throw new PendingException();
+                
+        }
+    }
     
     /**
-     * @When I do POST request :url
+     * @Then I should  have permission
      */
+    public function iShouldHavePermission()
+    {
+        $this->theResponseShouldNotContain("You don't have permission");      
+        $this->theResponseShouldNotContain("opencats - Login");      
+    }
+    
+    /**
+     * @Then I should not have permission
+     */
+    public function iShouldNotHavePermission()
+    {
+        if($this->accessLevel == "DISABLED")
+        {
+            $this->theResponseShouldContain("opencats - Login");
+        }
+        else
+        {
+            $this->theResponseShouldContain("You don't have permission");
+        }
+    }    
+    
+    
     public function iDoPOSTRequest($url)
     {
         $url = rtrim($this->getMinkParameter('base_url'), '/') . '/'.$url;
@@ -132,6 +172,7 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      */
     public function iAmLoggedInWithAccessLevel($accessLevel)
     {
+        $this->accessLevel = $accessLevel;
         switch($accessLevel)
         {
             case 'DISABLED':
@@ -169,7 +210,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             default:
                 throw new PendingException();
         }
-        
+
+        $this->visitPath('/index.php?m=login&a=logout');
         $this->visitPath('/index.php?m=login');
         $this->fillField('username', $username);
         $this->fillField('password', $password);
