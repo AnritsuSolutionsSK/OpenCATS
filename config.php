@@ -276,27 +276,66 @@ define ('LDAP_ATTRIBUTE_EMAIL', 'mail');
 
 define ('LDAP_SITEID', 1);
 
-/* 
+
 require_once('.\constants.php');
-// defining user roles
+
 const USER_ROLES = array(
+        'recruiter' => array('HR Recruiter', 'recruiter', 'This is a recruiter role.', ACCESS_LEVEL_SA, ACCESS_LEVEL_DELETE), 
+        'hiringmanager'=> array('Hiring Manager', 'hiringmanager', 'This is a hiring manager role.', ACCESS_LEVEL_SA, ACCESS_LEVEL_READ),
         'candidate' => array('Candidate', 'candidate', 'This is a candidate.', ACCESS_LEVEL_SA, ACCESS_LEVEL_READ),
         'demo' => array('Demo', 'demo', 'This is a demo user.', ACCESS_LEVEL_SA, ACCESS_LEVEL_READ)
     );
-    
-// defining access levels different from the default access level    
 const ACCESS_LEVEL_MAP = array(
+        'recruiter' => array(
+        
+        ),
+        'hiringmanager' => array(
+            'candidates.edit' => ACCESS_LEVEL_EDIT
+        ),
         'candidate' => array(
         ),
         'demo' => array(
             'candidates' => ACCESS_LEVEL_DELETE,
             'candidates.emailCandidates' => ACCESS_LEVEL_DISABLED,
             'candidates.history' => ACCESS_LEVEL_DEMO,
+            'candidates.priviledgedUser' => ACCESS_LEVEL_DEMO,
             'joborders' => ACCESS_LEVEL_DELETE,
             'joborders.show' => ACCESS_LEVEL_DEMO,
             'joborders.email' => ACCESS_LEVEL_DISABLED,
+            'contacts' => ACCESS_LEVEL_DELETE,
+            'contacts.emailContact' => ACCESS_LEVEL_DISABLED,
+            'contacts.show' => ACCESS_LEVEL_DEMO,
+            'companies' => ACCESS_LEVEL_DELETE,
+            'companies.emailContact' => ACCESS_LEVEL_DISABLED,
+            'companies.show' => ACCESS_LEVEL_DEMO,
+            'reports' => ACCESS_LEVEL_DELETE,
+            'calendar' => ACCESS_LEVEL_DELETE,
+            'lists' => ACCESS_LEVEL_DELETE,
+            'home' => ACCESS_LEVEL_DELETE,
+            'settings' => ACCESS_LEVEL_DELETE,
+            'settings.changePassword' => ACCESS_LEVEL_DEMO,
+            'settings.manageUsers' => ACCESS_LEVEL_DEMO,
+            'settings.professional' => ACCESS_LEVEL_DEMO,
+            'settings.showUser' => ACCESS_LEVEL_DEMO, 
+            'settings.addUser' => ACCESS_LEVEL_DEMO,
+            'settings.editUser' => ACCESS_LEVEL_DEMO,
+            'settings.customizeCalendar' => ACCESS_LEVEL_DEMO,
+            'settings.reports' => ACCESS_LEVEL_DEMO,
+            'settings.emailSettings' => ACCESS_LEVEL_DEMO,
+            'settings.careerPortalQuestionnairePreview' => ACCESS_LEVEL_DEMO,
+            'settings.careerPortalQuestionnaire' => ACCESS_LEVEL_DEMO,
+            'settings.careerPortalQuestionnaireUpdate' => ACCESS_LEVEL_DEMO,
+            'settings.careerPortalTemplateEdit' => ACCESS_LEVEL_DEMO,
+            'settings.careerPortalSettings' => ACCESS_LEVEL_DEMO,
+            'settings.eeo' => ACCESS_LEVEL_DEMO,
+            'settings.emailTemplates' => ACCESS_LEVEL_DEMO,
+            'settings.loginActivity' => ACCESS_LEVEL_DEMO,
+            'settings.viewItemHistory' => ACCESS_LEVEL_DEMO,
+            'settings.administration' => ACCESS_LEVEL_DEMO,
+            'activities' => ACCESS_LEVEL_DELETE,
+            'pipelines' => ACCESS_LEVEL_DELETE
         )
-    );*/
+    );
 
 /* All possible secure object names 
             'candidates.history'
