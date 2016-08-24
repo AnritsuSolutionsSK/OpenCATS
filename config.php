@@ -302,8 +302,9 @@ const ACCESS_LEVEL_MAP = array(
             'joborders' => ACCESS_LEVEL_DELETE,
             'joborders.show' => ACCESS_LEVEL_DEMO,
             'joborders.email' => ACCESS_LEVEL_DISABLED,
+            'joborders.history' => ACCESS_LEVEL_DEMO,
             'contacts' => ACCESS_LEVEL_DELETE,
-            'contacts.emailContact' => ACCESS_LEVEL_DISABLED,
+            'contacts.emailContact' => ACCESS_LEVEL_DEMO,
             'contacts.show' => ACCESS_LEVEL_DEMO,
             'companies' => ACCESS_LEVEL_DELETE,
             'companies.emailContact' => ACCESS_LEVEL_DISABLED,
@@ -403,6 +404,7 @@ const ACCESS_LEVEL_MAP = array(
             'joborders.considerCandidateSearch'
             'joborders.show'
             'joborders.add'
+            'joborders.history'
             'joborders.search'
             'joborders.administrativeHideShow'
             'joborders.list'

@@ -219,6 +219,29 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
     
     /**
+     * @Given I am logged in with :userRole user role
+     */
+    public function iAmLoggedInWithUserRole($userRole)
+    {
+        $this->accessLevel = '';
+        switch($userRole)
+        {
+            case 'DEMO':
+                $username = "demo";
+                $password = "tester";
+                break;
+            default:
+                throw new PendingException();
+        }
+
+        $this->visitPath('/index.php?m=login&a=logout');
+        $this->visitPath('/index.php?m=login');
+        $this->fillField('username', $username);
+        $this->fillField('password', $password);
+        $this->pressButton('Login');
+    }
+    
+    /**
      * @Given There is a person called :fullName with :property
      */
     public function thereIsAPersonCalledWith($fullName, $property)
