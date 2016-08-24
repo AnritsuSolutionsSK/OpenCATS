@@ -255,7 +255,7 @@
                                         <?php endforeach; ?>
                                     </table>
                                     <?php if (!$this->isPopup): ?>
-                                        <?php if ($this->getUserAccessLevel('joborders.createAttachement') >= ACCESS_LEVEL_EDIT): ?>
+                                        <?php if ($this->getUserAccessLevel('joborders.createAttachment') >= ACCESS_LEVEL_EDIT): ?>
                                             <?php if (isset($this->attachmentLinkHTML)): ?>
                                                 <?php echo($this->attachmentLinkHTML); ?>
                                             <?php else: ?>
@@ -340,7 +340,7 @@
                     <a id="report_link" href="<?php echo(CATSUtility::getIndexName()); ?>?m=reports&amp;a=customizeJobOrderReport&amp;jobOrderID=<?php echo($this->jobOrderID); ?>">
                         <img src="images/reportsSmall.gif" width="16" height="16" class="absmiddle" alt="report" border="0" />&nbsp;Generate Report
                     </a>
-                    <?php if ($this->privledgedUser): ?>
+                    <?php if ($this->getUserAccessLevel('joborders.history') >= ACCESS_LEVEL_DEMO): ?>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a id="history_link" href="<?php echo(CATSUtility::getIndexName()); ?>?m=settings&amp;a=viewItemHistory&amp;dataItemType=400&amp;dataItemID=<?php echo($this->jobOrderID); ?>">
                             <img src="images/icon_clock.gif" width="16" height="16" class="absmiddle"  border="0" />&nbsp;View History

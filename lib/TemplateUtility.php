@@ -904,7 +904,7 @@ class TemplateUtility
         $ratings = self::_getRatingImages();
         $indexName = CATSUtility::getIndexName();
 
-        if ($_SESSION['CATS']->getAccessLevel('joborders.editRating') < ACCESS_LEVEL_EDIT)
+        if ($_SESSION['CATS']->getAccessLevel('pipelines.editRating') < ACCESS_LEVEL_EDIT)
         {
             $HTML = '<img src="' . $ratings[$rating] . '" style="border: none;" alt="" id="moImage' . $candidateJobOrderID . '" />';
             return $HTML;

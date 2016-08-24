@@ -325,11 +325,11 @@
                         <td valign="top" align="left"><?php $this->_($contactsData['dateCreated']) ?></td>
                         <td valign="top" align="left"><?php $this->_($contactsData['ownerAbbrName']); ?></td>
                         <td valign="top" align="center">
-                            <?php if (!empty($contactsData['email1'])): ?>
+                            <?php if (!empty($contactsData['email1']) && $this->getUserAccessLevel('contacts.emailContact') != ACCESS_LEVEL_DEMO): ?>
                                 <a href="mailto:<?php $this->_($contactsData['email1']); ?>" title="Send E-Mail (<?php $this->_($contactsData['email1']); ?>)">
                                     <img src="images/actions/email.gif" width="16" height="16" alt="" class="absmiddle" border="0" />
                                 </a>
-                            <?php else: ?>
+                            <?php elseif($this->getUserAccessLevel('contacts.emailContact') != ACCESS_LEVEL_DEMO): ?>
                                 <img src="images/actions/email_no.gif" title="No E-Mail Address" width="16" height="16" alt="" class="absmiddle" border="0" />
                             <?php endif; ?>
                             <?php if ($this->getUserAccessLevel('contacts.edit') >= ACCESS_LEVEL_EDIT): ?>
