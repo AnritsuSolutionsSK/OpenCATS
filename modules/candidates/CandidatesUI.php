@@ -204,7 +204,7 @@ class CandidatesUI extends UserInterface
                 
             /* Change candidate-joborder status. */
             case 'addActivityChangeStatus':
-                if ($this->getUserAccessLevel('candidates.addActivityChangeStatus') < ACCESS_LEVEL_EDIT)
+                if ($this->getUserAccessLevel('pipelines.addActivityChangeStatus') < ACCESS_LEVEL_EDIT)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -221,7 +221,7 @@ class CandidatesUI extends UserInterface
 
             /* Remove a candidate from a pipeline. */
             case 'removeFromPipeline':
-                if ($this->getUserAccessLevel('pipelines.removeFromPipeline') < ACCESS_LEVEL_EDIT)
+                if ($this->getUserAccessLevel('pipelines.removeFromPipeline') < ACCESS_LEVEL_DELETE)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
@@ -333,6 +333,11 @@ class CandidatesUI extends UserInterface
      */
     public function publicAddCandidate($isModal, $transferURI, $moduleDirectory)
     {
+        if ($this->getUserAccessLevel('candidates.add') < ACCESS_LEVEL_EDIT)
+        {
+            CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
+        }
+
         $candidateID = $this->_addCandidate($isModal, $moduleDirectory);
 
         if ($candidateID <= 0)
@@ -353,6 +358,11 @@ class CandidatesUI extends UserInterface
      */
     public function publicAddActivityChangeStatus($isJobOrdersMode, $regardingID, $moduleDirectory)
     {
+        if ($this->getUserAccessLevel('pipelines.addActivityChangeStatus') < ACCESS_LEVEL_EDIT)
+        {
+            CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
+        }
+
         $this->_AddActivityChangeStatus(
             $isJobOrdersMode, $regardingID, $moduleDirectory
         );
@@ -1368,6 +1378,7 @@ class CandidatesUI extends UserInterface
      */
     private function considerForJobSearch($candidateIDArray = array())
     {
+        
         /* Get list of candidates. */
         if (isset($_REQUEST['candidateIDArrayStored']) && $this->isRequiredIDValid('candidateIDArrayStored', $_REQUEST, true))
         {
@@ -1613,9 +1624,6 @@ class CandidatesUI extends UserInterface
         {
             CommonErrors::fatalModal(COMMONERROR_BADINDEX, $this);
             return;
-            /*$this->fatalModal(
-                'The specified candidate ID could not be found.'
-            );*/
         }
 
         $pipelines = new Pipelines($this->_siteID);
