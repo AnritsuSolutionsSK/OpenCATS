@@ -271,7 +271,7 @@ class SettingsUI extends UserInterface
                     $this->onChangePassword();
                 }
                 break;
-
+                /*
             case 'newInstallPassword':
                 if ($this->getUserAccessLevel("settings.newInstallPassword") < ACCESS_LEVEL_SA)
                 {
@@ -348,7 +348,7 @@ class SettingsUI extends UserInterface
                     $this->newInstallFinished();
                 }
                 break;
-
+                */
             case 'manageUsers':
                 /* Bail out if the user doesn't have SA permissions. */
                 if ($this->getUserAccessLevel('settings.manageUsers') < ACCESS_LEVEL_DEMO)
