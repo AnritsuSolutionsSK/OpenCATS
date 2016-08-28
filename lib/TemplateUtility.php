@@ -1143,7 +1143,7 @@ class TemplateUtility
 
     public static function printSingleQuickActionMenu($dataItemType, $dataItemID)
     {
-        echo '<a href="javascript:void(0);" onclick="showHideSingleQuickActionMenu('.$dataItemType.', '.$dataItemID.', docjslib_getRealLeft(this), docjslib_getRealTop(this)+6);"><img src="images/downward.gif" border=0></a>';
+        echo '<a href="javascript:void(0);" onclick="showHideSingleQuickActionMenu('.$dataItemType.', '.$dataItemID.', docjslib_getRealLeft(this), docjslib_getRealTop(this)+15, '.$_SESSION['CATS']->getAccessLevel('pipelines.addToPipeline').' );"><img src="images/downward.gif" border=0></a>';
     }
 
     public static function _printQuickActionMenuHolder()
