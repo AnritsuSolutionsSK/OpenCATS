@@ -20,8 +20,8 @@ services:
       image: busybox
       volumes:
         - ..:/var/www/public
-        - ../test/config.php:/var/www/public/config.php
-        - ../test/demo_config.php:/var/www/public/demo_config.php
+        - ../test/test_config.php:/var/www/public/test_config.php
+        - ../test/test_demo_config.php:/var/www/public/test_demo_config.php
         - ../test/INSTALL_BLOCK:/var/www/public/INSTALL_BLOCK
       command: "true"
 
