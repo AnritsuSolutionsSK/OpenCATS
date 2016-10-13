@@ -12,6 +12,12 @@ default:
                 - SecurityContext
             filters:
                 tags: @security 
+        demo:
+            paths: [ %paths.base%/features ]
+            contexts:
+                - SecurityContext
+            filters:
+                tags: @demo 
     extensions:
         Behat\MinkExtension:
             base_url: http://opencats

@@ -1,4 +1,4 @@
-@security @roles
+@demo @roles
 Feature: User roles
   In order to protect sensitive information from users who should not have access to them
   Different user roles should have different permissions
