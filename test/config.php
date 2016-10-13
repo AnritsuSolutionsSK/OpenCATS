@@ -265,4 +265,56 @@ define ('LDAP_BIND_DN', 'cn=read-only-admin,dc=example,dc=com');
 define ('LDAP_BIND_PASSWORD', 'password');
 define ('LDAP_PROTOCOL_VERSION', 3);
 
+define ('LDAP_SITEID', 1);
+
+
+require_once('.\constants.php');
+
+const USER_ROLES = array(
+        'demo' => array('Demo', 'demo', 'This is a demo user.', ACCESS_LEVEL_SA, ACCESS_LEVEL_READ)
+    );
+const ACCESS_LEVEL_MAP = array(
+        'demo' => array(
+            'candidates' => ACCESS_LEVEL_DELETE,
+            'candidates.emailCandidates' => ACCESS_LEVEL_DISABLED,
+            'candidates.history' => ACCESS_LEVEL_DEMO,
+            'candidates.priviledgedUser' => ACCESS_LEVEL_DEMO,
+            'joborders' => ACCESS_LEVEL_DELETE,
+            'joborders.show' => ACCESS_LEVEL_DEMO,
+            'joborders.email' => ACCESS_LEVEL_DISABLED,
+            'joborders.history' => ACCESS_LEVEL_DEMO,
+            'contacts' => ACCESS_LEVEL_DELETE,
+            'contacts.emailContact' => ACCESS_LEVEL_DEMO,
+            'contacts.show' => ACCESS_LEVEL_DEMO,
+            'companies' => ACCESS_LEVEL_DELETE,
+            'companies.emailContact' => ACCESS_LEVEL_DISABLED,
+            'companies.show' => ACCESS_LEVEL_DEMO,
+            'reports' => ACCESS_LEVEL_DELETE,
+            'calendar' => ACCESS_LEVEL_DELETE,
+            'lists' => ACCESS_LEVEL_DELETE,
+            'home' => ACCESS_LEVEL_DELETE,
+            'settings' => ACCESS_LEVEL_DELETE,
+            'settings.changePassword' => ACCESS_LEVEL_DEMO,
+            'settings.manageUsers' => ACCESS_LEVEL_DEMO,
+            'settings.professional' => ACCESS_LEVEL_DEMO,
+            'settings.showUser' => ACCESS_LEVEL_DEMO, 
+            'settings.addUser' => ACCESS_LEVEL_DEMO,
+            'settings.editUser' => ACCESS_LEVEL_DEMO,
+            'settings.customizeCalendar' => ACCESS_LEVEL_DEMO,
+            'settings.reports' => ACCESS_LEVEL_DEMO,
+            'settings.emailSettings' => ACCESS_LEVEL_DEMO,
+            'settings.careerPortalQuestionnairePreview' => ACCESS_LEVEL_DEMO,
+            'settings.careerPortalQuestionnaire' => ACCESS_LEVEL_DEMO,
+            'settings.careerPortalQuestionnaireUpdate' => ACCESS_LEVEL_DEMO,
+            'settings.careerPortalTemplateEdit' => ACCESS_LEVEL_DEMO,
+            'settings.careerPortalSettings' => ACCESS_LEVEL_DEMO,
+            'settings.eeo' => ACCESS_LEVEL_DEMO,
+            'settings.emailTemplates' => ACCESS_LEVEL_DEMO,
+            'settings.loginActivity' => ACCESS_LEVEL_DEMO,
+            'settings.viewItemHistory' => ACCESS_LEVEL_DEMO,
+            'settings.administration' => ACCESS_LEVEL_DEMO,
+            'activities' => ACCESS_LEVEL_DELETE,
+            'pipelines' => ACCESS_LEVEL_DELETE
+        )
+    );
 ?>
