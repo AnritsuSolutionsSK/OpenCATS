@@ -427,4 +427,14 @@ const ACCESS_LEVEL_MAP = array(
             'calendar.deleteEvent'
             */
 
+/* Job Types mapping
+ */
+/* Uncomment bellow if you want custom mapping */
+/*const JOB_TYPES_LIST = array(
+    'PT' => 'Part-Time',
+    'FT' => 'Full-Time',
+    'ST' => 'Student',
+    'FL' => 'Freelance'
+);*/
+
 ?>
