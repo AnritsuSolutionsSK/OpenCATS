@@ -35,9 +35,12 @@
  * @version    $Id: TemplateUtility.php 3835 2007-12-12 19:08:38Z brian $
  */
 
+include_once('./vendor/autoload.php');
 include_once('Candidates.php');
 include_once('DateUtility.php');
 include_once('SystemInfo.php');
+
+use OpenCATS\UI\QuickActionMenu;
 
 /**
  *	Template Utility Library
@@ -647,11 +650,11 @@ class TemplateUtility
                      $al = substr($tabText, $alPosition + 4);
                      $soPosition = strpos($al, "@");
                      $soName = '';
-                     if( $soPosition !== false )
-                     {
-                         $soName = substr($al, $soPosition + 1);
-                         $al = substr($al, 0, $soPosition);
-                     }
+                     if( $soPosition !== false )		
+                     {		
+                         $soName = substr($al, $soPosition + 1);		
+                         $al = substr($al, 0, $soPosition);		
+                     }		
                      if ($_SESSION['CATS']->getAccessLevel($soName) >= $al ||
                          $_SESSION['CATS']->isDemo())
                      {
@@ -718,11 +721,11 @@ class TemplateUtility
                         $al = substr($link, $alPosition + 4);
                         $soPosition = strpos($al, "@");
                         $soName = '';
-                        if( $soPosition !== false )
-                        {
-                            $soName = substr($al, $soPosition + 1);
-                            $al = substr($al, 0, $soPosition);
-                        }
+                        if( $soPosition !== false )		
+                        {		
+                            $soName = substr($al, $soPosition + 1);		
+                            $al = substr($al, 0, $soPosition);		
+                        }		
                         if ($_SESSION['CATS']->getAccessLevel($soName) >= $al ||
                             $_SESSION['CATS']->isDemo())
                         {
@@ -1141,14 +1144,14 @@ class TemplateUtility
         return $text;
     }
 
-    public static function printSingleQuickActionMenu($dataItemType, $dataItemID)
+    public static function printSingleQuickActionMenu(QuickActionMenu $menu)
     {
-        echo '<a href="javascript:void(0);" onclick="showHideSingleQuickActionMenu('.$dataItemType.', '.$dataItemID.', docjslib_getRealLeft(this), docjslib_getRealTop(this)+15, '.$_SESSION['CATS']->getAccessLevel('pipelines.addToPipeline').' );"><img src="images/downward.gif" border=0></a>';
+        return $menu->getHtml();
     }
 
     public static function _printQuickActionMenuHolder()
     {
-        echo '<div class="ajaxSearchResults" id="singleQuickActionMenu" align="left" style="width:200px;">';
+        echo '<div class="ajaxSearchResults" id="singleQuickActionMenu" align="left" style="width:200px;" onclick="toggleVisibility()">';
 
         echo '</div>';
     }
