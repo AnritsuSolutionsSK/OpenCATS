@@ -296,7 +296,7 @@ class CandidatesUI extends UserInterface
             */
 
             case 'emailCandidates':
-                if ($this->getUserAccessLevel('candidates.emailCandidates') < ACCESS_LEVEL_SA)
+                if ($this->getUserAccessLevel('candidates.emailCandidates') < ACCESS_LEVEL_READ)
                 {
                     CommonErrors::fatal(COMMONERROR_PERMISSION, $this, 'Invalid user level for action.');
                 }
