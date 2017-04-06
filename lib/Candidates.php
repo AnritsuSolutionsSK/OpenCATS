@@ -1438,7 +1438,7 @@ class Candidates
 
         $this->_db->query($sql);
         
-         $sql = sprintf(
+        $sql = sprintf(
             "UPDATE
                 candidate_tag
             SET
@@ -2025,7 +2025,7 @@ class CandidatesDataGrid extends DataGrid
             }
         }
 
-        parent::__construct($instanceName, $parameters, $misc, $duplicates);
+        parent::__construct($instanceName, $parameters, $misc);
     }
 
     /**
