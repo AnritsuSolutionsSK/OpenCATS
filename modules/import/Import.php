@@ -386,7 +386,7 @@ class CandidatesImport
      * @param importID
      * @return candidateID
      */
-    public function add($dataNamed, $userID, $importID)
+    public function add($dataNamed, $userID, $importID, $encoding)
     {
         $dataColumns = array();
         $data = array();
@@ -394,7 +394,11 @@ class CandidatesImport
         foreach ($dataNamed AS $dataColumn => $d)
         {
             $dataColumns[] = $dataColumn;
-            $data[] = $this->_db->makeQueryStringOrNULL($d);
+            if($encoding != ""){
+                $data[] = iconv($encoding, 'UTF-8', $this->_db->makeQueryStringOrNULL($d));
+            } else {
+                $data[] = $this->_db->makeQueryStringOrNULL($d);
+            }
         }
 
         $sql = sprintf(
@@ -607,7 +611,7 @@ class CompaniesImport
      * @return companyID
      */
 
-    public function add($dataNamed, $userID, $importID)
+    public function add($dataNamed, $userID, $importID, $encoding)
     {
         $dataColumns = array();
         $data = array();
@@ -615,7 +619,11 @@ class CompaniesImport
         foreach ($dataNamed AS $dataColumn => $d)
         {
             $dataColumns[] = $dataColumn;
-            $data[] = $this->_db->makeQueryStringOrNULL($d);
+            if($encoding != ""){
+                $data[] = iconv($encoding, 'UTF-8', $this->_db->makeQueryStringOrNULL($d));
+            } else {
+                $data[] = $this->_db->makeQueryStringOrNULL($d);
+            }
         }
 
         $sql = sprintf(
@@ -708,7 +716,7 @@ class ContactImport
      * @param importID
      * @return companyID
      */
-    public function addCompany($dataNamed, $userID, $importID)
+    public function addCompany($dataNamed, $userID, $importID, $encoding)
     {
         $dataColumns = array();
         $data = array();
@@ -716,7 +724,11 @@ class ContactImport
         foreach ($dataNamed AS $dataColumn => $d)
         {
             $dataColumns[] = $dataColumn;
-            $data[] = $this->_db->makeQueryStringOrNULL($d);
+            if($encoding != ""){
+                $data[] = iconv($encoding, 'UTF-8', $this->_db->makeQueryStringOrNULL($d));
+            } else {
+                $data[] = $this->_db->makeQueryStringOrNULL($d);
+            }
         }
 
         $sql = sprintf(
@@ -762,7 +774,7 @@ class ContactImport
      * @param importID
      * @return contactID
      */
-    public function add($dataNamed, $userID, $importID)
+    public function add($dataNamed, $userID, $importID, $encoding)
     {
         $dataColumns = array();
         $data = array();
@@ -770,7 +782,11 @@ class ContactImport
         foreach ($dataNamed AS $dataColumn => $d)
         {
             $dataColumns[] = $dataColumn;
-            $data[] = $this->_db->makeQueryStringOrNULL($d);
+            if($encoding != ""){
+                $data[] = iconv($encoding, 'UTF-8', $this->_db->makeQueryStringOrNULL($d));
+            } else {
+                $data[] = $this->_db->makeQueryStringOrNULL($d);
+            }
         }
 
         $sql = sprintf(
