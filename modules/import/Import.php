@@ -460,6 +460,7 @@ class JobOrdersImport
      * @param array (field => value)
      * @param userID
      * @param importID
+     * @param encoding
      * @return joborderID
      */
     public function add($dataNamed, $userID, $importID, $encoding)
