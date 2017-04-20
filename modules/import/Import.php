@@ -462,7 +462,7 @@ class JobOrdersImport
      * @param importID
      * @return joborderID
      */
-    public function add($dataNamed, $userID, $importID)
+    public function add($dataNamed, $userID, $importID, $encoding)
     {
         $sql = sprintf(
             "SELECT 
@@ -501,7 +501,11 @@ class JobOrdersImport
             }
             else
             {
-                $data[] = $this->_db->makeQueryStringOrNULL($d);   
+                if($encoding != ""){
+                    $data[] = iconv($encoding, 'UTF-8', $this->_db->makeQueryStringOrNULL($d));
+                } else {
+                    $data[] = $this->_db->makeQueryStringOrNULL($d);
+                }
             }
         }
 

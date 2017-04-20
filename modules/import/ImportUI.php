@@ -940,7 +940,7 @@ class ImportUI extends UserInterface
                     break;
                     
                 case 'JobOrders':
-                    $result = $this->addToJobOrders($catsEntriesRows, $catsEntriesValuesNamed, $foreignEntries, $importID);
+                    $result = $this->addToJobOrders($catsEntriesRows, $catsEntriesValuesNamed, $foreignEntries, $importID, $encoding);
                     break;
 
                 case 'Contacts':
@@ -1083,7 +1083,7 @@ class ImportUI extends UserInterface
     /*
     * Inserts a record into job orders.
     */
-    private function addToJobOrders($dataFields, $dataNamed, $dataForeign, $importID)
+    private function addToJobOrders($dataFields, $dataNamed, $dataForeign, $importID, $encoding)
     {
         $dateAvailable = '01/01/0001';
 
@@ -1098,14 +1098,14 @@ class ImportUI extends UserInterface
         if (!eval(Hooks::get('IMPORT_ADD_JOBORDER'))) return;
 
         $jobOrdersImport = new JobOrdersImport($this->_siteID);
-        $jobOrderID = $jobOrdersImport->add($dataNamed, $this->_userID, $importID);
+        $jobOrderID = $jobOrdersImport->add($dataNamed, $this->_userID, $importID, $encoding);
 
         if ($jobOrderID <= 0)
         {
             return 'Failed to add job order.';
         }
 
-        $this->addForeign(DATA_ITEM_JOBORDER, $dataForeign, $candidateID, $importID);
+        $this->addForeign(DATA_ITEM_JOBORDER, $dataForeign, $jobOrderID, $importID);
 
         if (!eval(Hooks::get('IMPORT_ADD_JOBORDER_POST'))) return;
 
@@ -1274,7 +1274,7 @@ class ImportUI extends UserInterface
     */
     function showMassImport()
     {
-        $directoryRoot = './upload/';
+        $directoryRoot = './upload/massImport/';
 
         if (ModuleUtility::moduleExists('asp'))
         {
