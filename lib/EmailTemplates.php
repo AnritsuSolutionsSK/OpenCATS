@@ -417,8 +417,9 @@ class EmailTemplates
         );
 
         return $this->_db->getAllAssoc($sql);
+    }
 
-    public function getEmailSignature(){
+    public function getEmailSignature() {
         $sql = sprintf(
             "SELECT
                 settings.value AS value
