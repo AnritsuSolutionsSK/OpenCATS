@@ -324,13 +324,18 @@ define ('LDAP_SITEID', 1);
 /*const JOB_ORDER_STATUS_DEFAULT = 'Active';*/
 
 /* Job Types mapping
- */
-/* Uncomment bellow if you want custom mapping */
-/*const JOB_TYPES_LIST = array(
-    'PT' => 'Part-Time',
-    'FT' => 'Full-Time',
-    'ST' => 'Student',
-    'FL' => 'Freelance'
-);*/
+ *
+ * Uncomment bellow if you want custom mapping */
+
+ /*
+class JOB_TYPES {
+    public static $LIST = array(
+        'PT' => 'Part-Time',
+        'FT' => 'Full-Time',
+        'ST' => 'Student',
+        'FL' => 'Freelance'
+    );
+};
+*/
 
 ?>
